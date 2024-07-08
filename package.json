@@ -1,0 +1,22 @@
+{
+  "name": "plantilla-proyecto-mdd-main",
+  "version": "1.0.0",
+  "description": "> [!TIP] > Les recomiendo usar la plantilla, debido a que les ahorrará tiempo al ya tener la implementación del login.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+
+
+  
+}
