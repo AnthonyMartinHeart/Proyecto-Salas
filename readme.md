@@ -33,6 +33,7 @@ npm install
 ```bash
 npm install nodemailer
 
+
 ## Auditar las dependencias para encontrar vulnerabilidades:
 
 ```bash
