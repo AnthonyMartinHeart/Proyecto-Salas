@@ -1,3 +1,5 @@
+//CREADO POR PATRICIO ESPARZA
+
 // routes/resourceUsageRoutes.js
 import express from 'express';
 import {
