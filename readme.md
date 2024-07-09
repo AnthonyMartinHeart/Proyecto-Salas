@@ -24,27 +24,28 @@ Este proyecto tiene como objetivo gestionar el uso de salas, así como el prést
    cd Proyecto-Salas
 Instalar las dependencias:
 
-bash
-Copiar código
+```bash
 npm install
-Instalar Nodemailer:
 
-bash
-Copiar código
+
+## Instalar Nodemailer:
+
+```bash
 npm install nodemailer
-Auditar las dependencias para encontrar vulnerabilidades:
 
-bash
-Copiar código
+## Auditar las dependencias para encontrar vulnerabilidades:
+
+```bash
+
 npm audit
+
 Corregir las vulnerabilidades encontradas:
 
-bash
-Copiar código
+```bash
 npm audit fix
+
 Ejecución del Proyecto
 Para iniciar el servidor, ejecute:
 
-bash
-Copiar código
+```bash
 npm start
