@@ -1,11 +1,11 @@
 # Proyecto Uso de Salas, Préstamo de Controles y HDMI
 
 ## Alumnos
-- Benjamin Manriquez
+- Benjamin Manriquez / @KrzyBen
 - Jorge Diaz
 - Patricio Esparza
 - Alejandro Latorre
-- Jorge Martínez
+- Jorge Martínez / @AnthonyMartinHeart
 
 ## Fecha
 09/07/2023
