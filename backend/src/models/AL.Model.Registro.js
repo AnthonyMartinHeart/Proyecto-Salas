@@ -1,3 +1,5 @@
+//CREADO POR ALEJANDRO LATORRE
+
 'use strict';
 // Se importa mongoose para interactuar con la base de datos de MongoDB
 import mongoose from "mongoose";
