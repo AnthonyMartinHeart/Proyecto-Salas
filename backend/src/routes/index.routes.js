@@ -37,6 +37,9 @@ import BMEquipos from "./BM.Routes.Equipos.js";
 import ResourceUsage from "./resourceUsage.Routes.js";
 
 
+/** Enrutador Alejandro **/
+import registroPrestamo from "../routes/Al.Routes.Registros.js";
+
 // Se realiza una instancia de express
 
 const router = Router();
@@ -69,4 +72,7 @@ router.use("/Equipos", BMEquipos);
 // Define las rutas para los recursos (/api/resources)
 router.use("/Resources", ResourceUsage);
 
+router.use("/Registros",registroPrestamo);
+
 export default router;
+
