@@ -73,7 +73,7 @@ export const deleteReport = async (req, res) => {
         const report = await ResourceUsage.findById(req.params.id);
         if (!report) return res.status(404).json({ message: 'Report not found' });
 
-        await report.remove();
+        await ResourceUsage.deleteOne({ _id: req.params.id });
         res.status(200).json({ message: 'Report deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });
