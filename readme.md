@@ -2,7 +2,7 @@
 
 ## Alumnos
 - Benjamin Manriquez / @KrzyBen
-- Jorge Diaz
+- Jorge Diaz / @jorgeubb31
 - Patricio Esparza
 - Alejandro Latorre
 - Jorge Martínez / @AnthonyMartinHeart
