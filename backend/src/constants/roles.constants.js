@@ -1,4 +1,4 @@
-/** Roles permitidos por la base de datos */
-const ROLES = ["usuario", "administrador"];
+// roles.constants.js
+const ROLES = ["usuario", "administrador", "docente"];
 
 export default ROLES;
