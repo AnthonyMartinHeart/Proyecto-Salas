@@ -1,3 +1,5 @@
+//CREADO POR ALEJANDRO LATORRE
+
 // controllers/AL.C_Registros.js
 'use strict';
 import RegistroPrestamo from '../models/AL.Model.Registro.js';
