@@ -26,7 +26,15 @@ import JMReservas from "./JM.Routes.Reservas.js";
 import JMUsuario from "./JM.Routes.Usuario.js";
 
 
+/** Enrutador Jorge diaz **/
+import solicitudRoutes from "./solicitud.routes.js";
 
+
+/** Enrutador Benjamin Manriquez **/
+import BMEquipos from "./BM.Routes.Equipos.js";
+
+/** Enrutador Patricio **/
+import ResourceUsage from "./resourceUsage.Routes.js";
 
 
 // Se realiza una instancia de express
@@ -52,5 +60,13 @@ router.use('/Recursos', JMRecursosRoutes);
 
 router.use("/Usuario", JMUsuario);
 
+
+router.use("/solicitud", solicitudRoutes);
+
+
+router.use("/Equipos", BMEquipos);
+
+// Define las rutas para los recursos (/api/resources)
+router.use("/Resources", ResourceUsage);
 
 export default router;
