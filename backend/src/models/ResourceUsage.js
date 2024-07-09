@@ -1,3 +1,5 @@
+//CREADO POR PATRICIO ESPARZA
+
 // models/ResourceUsage.js
 import mongoose from 'mongoose';
 
