@@ -27,8 +27,7 @@ Instalar las dependencias:
 ```bash
 npm install
 
-
-## Instalar Nodemailer:
+Instalar Nodemailer:
 
 ```bash
 npm install nodemailer
