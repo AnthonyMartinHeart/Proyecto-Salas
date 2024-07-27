@@ -1,14 +1,14 @@
-//REALIZADO POR JORGE MARTINEZ 2024-1
-
 'use strict';
 
 // Importación del módulo Router desde Express
 import { Router } from 'express';
 
+import { isAdmin } from '../middlewares/auth.middleware.js';
+
 // Importación de funciones específicas desde el archivo JM.Reservas.js en la carpeta controllers
 
 import { get, getByName, getByNameSala, getById, post, deleteReserva, updatedReserva } from '../controllers/JM.Reservas.js';
-import { put } from '../controllers/JM.Recursos.js';
+
 
 // Creación de una instancia de Router
 const router = Router();
@@ -16,22 +16,23 @@ const router = Router();
 // Definición de rutas y asociación con las funciones importadas
 
 // Ruta para obtener todas las reservas
-router.get('/get', get);
+router.get('/get',isAdmin, get);
 
 // Ruta para obtener una reserva por nombre
-router.get('/name', getByName);
+router.get('/name',isAdmin, getByName);
 
 // Ruta para obtener reservas por nombre de sala
-router.get('/salas', getByNameSala);
+router.get('/salas',isAdmin, getByNameSala);
 
 // Ruta para obtener una reserva por ID (para administradores)
-router.get('/id', getById);
+router.get('/id',isAdmin, getById);
 
 // Ruta para crear una nueva reserva
-router.post('/new', post);
+router.post('/new',isAdmin, post);
 
 // Ruta para eliminar una reserva
-router.delete('/delete', deleteReserva);
+router.delete('/delete',isAdmin, deleteReserva);
+
 
 router.put('/update/:id', updatedReserva);
 
