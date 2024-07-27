@@ -36,7 +36,12 @@ export const getAll = async (req, res) => {
 
 export const post = async (req, res) => {
     try {
-        const { nombre } = req.body;
+        const { nombre, cantidad } = req.body;
+
+        // Verificar si la capacidad supera el límite permitido
+        if (cantidad >= 40) {
+            return res.status(400).send({ message: 'Limite De cantidad Alcanzado' });
+        }
 
         // Verificar si ya existe un recurso con el mismo nombre
         const existingRecurso = await Recurso.findOne({ nombre });
@@ -135,6 +140,10 @@ export const put = async (req, res) => {
             { new: true }
         );
 
+                // Verificar si la cantidad supera el límite permitido
+                if (cantidad >= 40) {
+                    return res.status(400).send({ message: 'Limite De cantidad Alcanzado' });
+                }
 
         // Verificar si se encontró y actualizó el recurso
 
