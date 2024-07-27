@@ -1,9 +1,9 @@
-//REALIZADO POR JORGE MARTINEZ 2024-1
-
 'use strict';
 
 // Importación del módulo Router desde Express
 import { Router } from 'express';
+
+import { isAdmin } from '../middlewares/auth.middleware.js';
 
 // Importación de funciones específicas desde el archivo JM.Recursos.js en la carpeta controllers
 
@@ -17,19 +17,19 @@ const router = Router();
 // Definición de rutas y asociación con las funciones importadas
 
 // Ruta para obtener todos los recursos (para administradores)
-router.get('/admin', getAll);
+//router.get('/admin', isAdmin, getAll);
 
 // Ruta para obtener un recurso por nombre
 router.get('/name', getByName);
 
 // Ruta para crear un nuevo recurso
-router.post('/create', post);
+router.post('/create', isAdmin ,post);
 
 // Ruta para eliminar un recurso
-router.delete('/delete/:id', deleteRecurso);
+router.delete('/delete/:id', isAdmin, deleteRecurso);
 
 // Ruta para actualizar un recurso existente
-router.put('/update/:id', put);
+router.put('/update/:id', isAdmin, put);
 
 // Exportación del router para ser utilizado por Express en otros módulos
 export default router;
