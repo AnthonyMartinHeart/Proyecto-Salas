@@ -104,37 +104,34 @@ export const getById = async (req, res) => {
 };
 
 // Controlador para crear una nueva reserva
-
 export const post = async (req, res) => {
     try {
-        const { nombre } = req.body;
+        const { nombre, capacidad } = req.body;
+
+        // Verificar si la capacidad supera el límite permitido
+        if (capacidad >= 40) {
+            return res.status(400).send({ message: 'La capacidad de la sala no puede superar los 40 asientos' });
+        }
 
         // Verificar si ya existe una reserva con el mismo nombre (o algún otro campo relevante)
-
-        const existingReserva = await Reserva.findOne({ campoRelevante: req.body.campoRelevante });
+        const existingReserva = await Reserva.findOne({ nombre });
 
         if (existingReserva) {
-            
             // Si ya existe una reserva con los mismos datos relevantes, enviar un mensaje de error
-
             return res.status(400).send({ message: 'Ya existe una reserva con estos datos' });
         }
 
         // Si no existe una reserva con los mismos datos relevantes, crear una nueva instancia
-
         const nuevaReserva = new Reserva(req.body);
 
         // Guardar la nueva reserva en la base de datos
-
         await nuevaReserva.save();
 
         // Enviar una respuesta de éxito con un mensaje
-
         res.status(201).send({ message: 'Registrado Exitosamente' });
 
     } catch (error) {
         // En caso de error, enviar un estado 400 con un mensaje y el error
-
         res.status(400).send({ message: 'Fallo al Registrar', error });
     }
 };
@@ -174,22 +171,30 @@ export const deleteReserva = async (req, res) => {
     }
 };
 
+
 // Controlador para actualizar una reserva por ID
 
 export const updatedReserva = async (req, res) => {
-
     try {
+
         const { id } = req.params; // Obtener el _id de la URL
 
         const updateData = req.body; // Obtener los datos actualizados del cuerpo de la solicitud
 
-        // Verificamos si el ID y los datos de actualización están presentes
+        // Verificar si el ID y los datos de actualización están presentes
 
         if (!id || !updateData) {
 
             // Si falta el ID o los datos de actualización, enviamos un estado 400 con un mensaje
 
             return res.status(400).send({ message: 'Se requiere ID de reserva y datos para actualizar' });
+        }
+
+        // Verificar si la capacidad supera el límite permitido
+
+        if (updateData.capacidad && updateData.capacidad >= 40) {
+
+            return res.status(400).send({ message: 'La capacidad de la sala no puede superar los 40 asientos' });
         }
 
         // Actualizamos la reserva con los nuevos datos y devolvemos el documento actualizado
@@ -212,9 +217,8 @@ export const updatedReserva = async (req, res) => {
     } catch (error) {
 
         // En caso de error, enviamos un estado 400 con un mensaje y el error
-
         console.error('Error al actualizar reserva:', error);
-        
+
         res.status(400).send({ message: 'No se pudo actualizar la reserva', error });
     }
 };
