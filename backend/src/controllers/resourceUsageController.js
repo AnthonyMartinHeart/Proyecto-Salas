@@ -48,7 +48,7 @@ export const getReportById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
+//Hola
 // Actualizar un reporte por ID
 export const updateReport = async (req, res) => {
     try {
