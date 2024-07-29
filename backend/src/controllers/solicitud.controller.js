@@ -71,7 +71,7 @@ export async function updateSolicitud(req, res) {
 
     // Buscar la solicitud por ID y usuario, y actualizarla con los nuevos datos
     const solicitud = await Solicitud.findOneAndUpdate(
-      { rut: rut, user: userId },
+      { _id: id, user: userId },
       { tipo, recurso, fechaInicio, fechaFin, estado },
       { new: true } // Devolver el documento actualizado
     );
