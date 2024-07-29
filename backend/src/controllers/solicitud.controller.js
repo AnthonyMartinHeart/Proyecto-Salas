@@ -45,6 +45,11 @@ export async function createSolicitud(req, res) {
 // Controlador para obtener todas las solicitudes de un usuario
 export async function getSolicitudes(req, res) {
   try {
+    // Verificar que el usuario esté autenticado
+    if (!req.session || !req.session.user) {
+      return res.status(401).json({ message: "No estás autenticado" });
+    }
+
     // Obtener el ID del usuario de la sesión
     const userId = req.session.user.rut;
     // Buscar todas las solicitudes del usuario y popular el campo 'user' con 'username' y 'email'

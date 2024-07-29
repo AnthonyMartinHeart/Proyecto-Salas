@@ -3,11 +3,11 @@
 import mongoose from "mongoose";
 
 const solicitudSchema = new mongoose.Schema({
-  user: { type: String, ref: "User", required: true },
+  user: { type: String, required: true },
   tipo: { type: String, enum: ["sala", "equipo"], required: true },
   recurso: { type: String, required: true }, // nombre o identificación del recurso
-  fechaInicio: { type: Date, required: true },
-  fechaFin: { type: Date, required: true },
+  fechaInicio: { type: String, required: true },
+  fechaFin: { type: String, required: true },
   estado: { type: String, enum: ["pendiente", "aprobada", "rechazada", "cancelada"], default: "pendiente" }
 }, { timestamps: true });
 

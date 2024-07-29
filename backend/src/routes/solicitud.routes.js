@@ -24,7 +24,7 @@ router.post("/create", isAdmin, createSolicitud);
 
 // Ruta para obtener las solicitudes del usuario autenticado
 
-router.get("/login", isAdmin, getSolicitudes);
+router.get("/get", isAdmin, getSolicitudes);
 
 // Ruta para actualizar una solicitud existente, requiere que el usuario esté autenticado
 
