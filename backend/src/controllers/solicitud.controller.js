@@ -71,7 +71,7 @@ export async function updateSolicitud(req, res) {
 
     // Buscar la solicitud por ID y usuario, y actualizarla con los nuevos datos
     const solicitud = await Solicitud.findOneAndUpdate(
-      { rut: id, user: userId },
+      { rut: rut, user: userId },
       { tipo, recurso, fechaInicio, fechaFin, estado },
       { new: true } // Devolver el documento actualizado
     );
@@ -94,7 +94,7 @@ export async function updateSolicitud(req, res) {
 export async function deleteSolicitud(req, res) {
   try {
     // Obtener el ID de la solicitud de los parámetros de la petición
-    const { id } = req.params;
+    const { rut } = req.params;
     // Obtener el ID del usuario de la sesión
     const userId = req.session.user.rut;
 
