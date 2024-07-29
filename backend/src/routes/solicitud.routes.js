@@ -12,7 +12,7 @@ import { createSolicitud, getSolicitudes, updateSolicitud, deleteSolicitud } fro
 
 // Importar el middleware de autenticación
 
-import { isLoggedIn } from "../middlewares/auth.middleware.js";
+import { isAdmin, isLoggedIn } from "../middlewares/auth.middleware.js";
 
 // Crear una nueva instancia del enrutador
 
@@ -20,19 +20,19 @@ const router = Router();
 
 // Ruta para crear una nueva solicitud, requiere que el usuario esté autenticado
 
-router.post("/create", isLoggedIn, createSolicitud);
+router.post("/create", isAdmin, createSolicitud);
 
 // Ruta para obtener las solicitudes del usuario autenticado
 
-router.get("/login", isLoggedIn, getSolicitudes);
+router.get("/login", isAdmin, getSolicitudes);
 
 // Ruta para actualizar una solicitud existente, requiere que el usuario esté autenticado
 
-router.put("/update/:id", isLoggedIn, updateSolicitud); 
+router.put("/update/:id", isAdmin, updateSolicitud); 
 
 // Ruta para eliminar una solicitud existente, requiere que el usuario esté autenticado
 
-router.delete("/delete/:id", isLoggedIn, deleteSolicitud);
+router.delete("/delete/:id", isAdmin, deleteSolicitud);
 
 // Exportar el enrutador para su uso en otras partes de la aplicación
 
