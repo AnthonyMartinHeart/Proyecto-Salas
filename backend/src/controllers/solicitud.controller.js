@@ -1,18 +1,25 @@
 //CREADO POR JORGE DIAZ
 
-"use strict";
+// Importar los modelos de Solicitud y User
 
-// Importar el enrutador de Express
+import Solicitud from '../models/solicitud.model.js';
 
-import { Router } from "express";
+import User from '../models/user.model.js';
 
-// Importar los controladores de solicitudes
+// Controlador para crear una nueva solicitud
+export async function createSolicitud(req, res) {
+  try {
+    // Obtener los datos de la solicitud del cuerpo de la petición
+    const { tipo, recurso, fechaInicio, fechaFin } = req.body;
 
-import { createSolicitud, getSolicitudes, updateSolicitud, deleteSolicitud } from "../controllers/solicitud.controller.js";
+    // Verificar que el usuario esté autenticado
+    if (!req.session || !req.session.user) {
+      return res.status(401).json({ message: "No estás autenticado" });
+    }
 
-<<<<<<< HEAD
     // Obtener el ID del usuario de la sesión
     const userId = req.session.user.rut;
+
     // Crear una nueva instancia del modelo Solicitud con los datos proporcionados
     const newSolicitud = new Solicitud({
       user: userId,
@@ -21,19 +28,20 @@ import { createSolicitud, getSolicitudes, updateSolicitud, deleteSolicitud } fro
       fechaInicio,
       fechaFin
     });
-=======
-// Importar el middleware de autenticación
 
-import { isAdmin, isLoggedIn } from "../middlewares/auth.middleware.js";
->>>>>>> b799c840d5134319c6d138956299c469aad2357e
+    // Guardar la nueva solicitud en la base de datos
+    await newSolicitud.save();
 
-// Crear una nueva instancia del enrutador
+    // Responder con un mensaje de éxito y la nueva solicitud creada
+    res.status(201).json({ message: "Solicitud creada exitosamente", data: newSolicitud });
+  } catch (error) {
+    // Manejar errores y responder con un mensaje de error interno del servidor
+    console.error("Error en solicitud.controller.js -> createSolicitud():", error);
+    res.status(500).json({ message: "Error interno del servidor.", error: error.message });
+  }
+}
 
-const router = Router();
 
-// Ruta para crear una nueva solicitud, requiere que el usuario esté autenticado
-
-<<<<<<< HEAD
 // Controlador para obtener todas las solicitudes de un usuario
 export async function getSolicitudes(req, res) {
   try {
@@ -41,13 +49,16 @@ export async function getSolicitudes(req, res) {
     const userId = req.session.user.rut;
     // Buscar todas las solicitudes del usuario y popular el campo 'user' con 'username' y 'email'
     const solicitudes = await Solicitud.find({ user: userId }).populate('user', 'username email');
-=======
-router.post("/create", isAdmin, createSolicitud);
->>>>>>> b799c840d5134319c6d138956299c469aad2357e
 
-// Ruta para obtener las solicitudes del usuario autenticado
+    // Responder con un mensaje de éxito y las solicitudes encontradas
+    res.status(200).json({ message: "Solicitudes del usuario", data: solicitudes });
+  } catch (error) {
+    // Manejar errores y responder con un mensaje de error interno del servidor
+    console.log("Error en solicitud.controller.js -> getSolicitudes():", error);
+    res.status(500).json({ message: "Error interno del servidor." });
+  }
+}
 
-<<<<<<< HEAD
 // Controlador para actualizar una solicitud existente
 export async function updateSolicitud(req, res) {
   try {
@@ -57,17 +68,28 @@ export async function updateSolicitud(req, res) {
     const userId = req.session.user.rut;
     // Obtener los nuevos datos de la solicitud del cuerpo de la petición
     const { tipo, recurso, fechaInicio, fechaFin, estado } = req.body;
-=======
-router.get("/login", isAdmin, getSolicitudes);
->>>>>>> b799c840d5134319c6d138956299c469aad2357e
 
-// Ruta para actualizar una solicitud existente, requiere que el usuario esté autenticado
+    // Buscar la solicitud por ID y usuario, y actualizarla con los nuevos datos
+    const solicitud = await Solicitud.findOneAndUpdate(
+      { rut: id, user: userId },
+      { tipo, recurso, fechaInicio, fechaFin, estado },
+      { new: true } // Devolver el documento actualizado
+    );
 
-router.put("/update/:id", isAdmin, updateSolicitud); 
+    // Si no se encuentra la solicitud, responder con un mensaje de error
+    if (!solicitud) {
+      return res.status(404).json({ message: "Solicitud no encontrada o no autorizada para modificar" });
+    }
 
-// Ruta para eliminar una solicitud existente, requiere que el usuario esté autenticado
+    // Responder con un mensaje de éxito y la solicitud actualizada
+    res.status(200).json({ message: "Solicitud actualizada exitosamente", data: solicitud });
+  } catch (error) {
+    // Manejar errores y responder con un mensaje de error interno del servidor
+    console.log("Error en solicitud.controller.js -> updateSolicitud():", error);
+    res.status(500).json({ message: "Error interno del servidor." });
+  }
+}
 
-<<<<<<< HEAD
 // Controlador para eliminar una solicitud existente
 export async function deleteSolicitud(req, res) {
   try {
@@ -75,11 +97,20 @@ export async function deleteSolicitud(req, res) {
     const { id } = req.params;
     // Obtener el ID del usuario de la sesión
     const userId = req.session.user.rut;
-=======
-router.delete("/delete/:id", isAdmin, deleteSolicitud);
->>>>>>> b799c840d5134319c6d138956299c469aad2357e
 
-// Exportar el enrutador para su uso en otras partes de la aplicación
+    // Buscar la solicitud por ID y usuario, y eliminarla
+    const solicitud = await Solicitud.findOneAndDelete({ rut: rut, user: userId });
 
-export default router;
+    // Si no se encuentra la solicitud, responder con un mensaje de error
+    if (!solicitud) {
+      return res.status(404).json({ message: "Solicitud no encontrada o no autorizada para eliminar" });
+    }
 
+    // Responder con un mensaje de éxito y la solicitud eliminada
+    res.status(200).json({ message: "Solicitud cancelada exitosamente", data: solicitud });
+  } catch (error) {
+    // Manejar errores y responder con un mensaje de error interno del servidor
+    console.log("Error en solicitud.controller.js -> deleteSolicitud():", error);
+    res.status(500).json({ message: "Error interno del servidor." });
+  }
+}
