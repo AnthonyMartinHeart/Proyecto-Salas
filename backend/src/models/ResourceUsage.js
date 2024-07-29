@@ -24,7 +24,7 @@ const ResourceUsageSchema = new mongoose.Schema({
     equipmentStatus: {
         type: String,
         required: true,
-        enum: ['Good', 'Needs Maintenance', 'Out of Order']
+        enum: ['Ok', 'Necesita mantencion', 'Fuera de Uso']
     },
     lastUpdated: {
         type: Date,
@@ -33,3 +33,4 @@ const ResourceUsageSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('ResourceUsage', ResourceUsageSchema);
+
