@@ -19,7 +19,7 @@ export const getAllReports = async (req, res) => {
 export const createReport = async (req, res) => {
     // Verifica si req.body.resourceId es un ObjectId válido
     if (!ObjectId.isValid(req.body.resourceId)) {
-        return res.status(400).json({ message: 'Invalid resourceId' });
+        return res.status(400).json({ message: 'Id Del Recurso Invalido.' });
     }
 
     const report = new ResourceUsage({
@@ -32,9 +32,9 @@ export const createReport = async (req, res) => {
 
     try {
         const newReport = await report.save();
-        res.status(201).json({ message: 'Report created successfully', report: newReport });
+        res.status(201).json({ message: 'Reporte creado exitosamente.', report: newReport });
     } catch (error) {
-        res.status(400).json({ message: 'Failed to create report', error: error.message });
+        res.status(400).json({ message: 'No se pudo crear el reporte.', error: error.message });
     }
 };
 
@@ -42,7 +42,7 @@ export const createReport = async (req, res) => {
 export const getReportById = async (req, res) => {
     try {
         const report = await ResourceUsage.findById(req.params.id);
-        if (!report) return res.status(404).json({ message: 'Report not found' });
+        if (!report) return res.status(404).json({ message: 'Reporte No Encontrado.' });
         res.status(200).json(report);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -53,7 +53,7 @@ export const getReportById = async (req, res) => {
 export const updateReport = async (req, res) => {
     try {
         const report = await ResourceUsage.findById(req.params.id);
-        if (!report) return res.status(404).json({ message: 'Report not found' });
+        if (!report) return res.status(404).json({ message: 'Reporte No Encontrado' });
 
         // Actualiza solo los campos que se proporcionan en req.body
         if (req.body.resourceId) report.resourceId = req.body.resourceId;
@@ -73,11 +73,12 @@ export const updateReport = async (req, res) => {
 export const deleteReport = async (req, res) => {
     try {
         const report = await ResourceUsage.findById(req.params.id);
-        if (!report) return res.status(404).json({ message: 'Report not found' });
+        if (!report) return res.status(404).json({ message: 'Reporte No encontrado' });
 
         await ResourceUsage.deleteOne({ _id: req.params.id });
-        res.status(200).json({ message: 'Report deleted' });
+        res.status(200).json({ message: 'Reporte Borrado.' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
+
