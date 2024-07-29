@@ -6,8 +6,8 @@ const solicitudSchema = new mongoose.Schema({
   user: { type: String, required: true },
   tipo: { type: String, enum: ["sala", "equipo"], required: true },
   recurso: { type: String, required: true }, // nombre o identificación del recurso
-  fechaInicio: { type: String, required: true },
-  fechaFin: { type: String, required: true },
+  fechaInicio: { type: Date, required: true },
+  fechaFin: { type: Date, required: true },
   estado: { type: String, enum: ["pendiente", "aprobada", "rechazada", "cancelada"], default: "pendiente" }
 }, { timestamps: true });
 
