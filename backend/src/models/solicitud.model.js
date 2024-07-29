@@ -3,7 +3,7 @@
 import mongoose from "mongoose";
 
 const solicitudSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  user: { type: String, ref: "User", required: true },
   tipo: { type: String, enum: ["sala", "equipo"], required: true },
   recurso: { type: String, required: true }, // nombre o identificación del recurso
   fechaInicio: { type: Date, required: true },

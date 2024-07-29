@@ -18,8 +18,7 @@ export async function createSolicitud(req, res) {
     }
 
     // Obtener el ID del usuario de la sesión
-    const userId = req.session.user._id;
-
+    const userId = req.session.user.rut;
     // Crear una nueva instancia del modelo Solicitud con los datos proporcionados
     const newSolicitud = new Solicitud({
       user: userId,
@@ -46,7 +45,7 @@ export async function createSolicitud(req, res) {
 export async function getSolicitudes(req, res) {
   try {
     // Obtener el ID del usuario de la sesión
-    const userId = req.session.user._id;
+    const userId = req.session.user.rut;
     // Buscar todas las solicitudes del usuario y popular el campo 'user' con 'username' y 'email'
     const solicitudes = await Solicitud.find({ user: userId }).populate('user', 'username email');
 
@@ -65,7 +64,7 @@ export async function updateSolicitud(req, res) {
     // Obtener el ID de la solicitud de los parámetros de la petición
     const { id } = req.params;
     // Obtener el ID del usuario de la sesión
-    const userId = req.session.user._id;
+    const userId = req.session.user.rut;
     // Obtener los nuevos datos de la solicitud del cuerpo de la petición
     const { tipo, recurso, fechaInicio, fechaFin, estado } = req.body;
 
@@ -96,7 +95,7 @@ export async function deleteSolicitud(req, res) {
     // Obtener el ID de la solicitud de los parámetros de la petición
     const { id } = req.params;
     // Obtener el ID del usuario de la sesión
-    const userId = req.session.user._id;
+    const userId = req.session.user.rut;
 
     // Buscar la solicitud por ID y usuario, y eliminarla
     const solicitud = await Solicitud.findOneAndDelete({ _id: id, user: userId });
