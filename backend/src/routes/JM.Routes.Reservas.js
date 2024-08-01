@@ -31,7 +31,7 @@ router.get('/id',isAdmin, getById);
 router.post('/new',isAdmin, post);
 
 // Ruta para eliminar una reserva
-router.delete('/delete',isAdmin, deleteReserva);
+router.delete('/delete/:id',isAdmin, deleteReserva);
 
 
 router.put('/update/:id', updatedReserva);

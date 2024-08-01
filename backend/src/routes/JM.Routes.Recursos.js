@@ -7,7 +7,7 @@ import { isAdmin } from '../middlewares/auth.middleware.js';
 
 // Importación de funciones específicas desde el archivo JM.Recursos.js en la carpeta controllers
 
-import { getAll, post, getByName, deleteRecurso, put } from '../controllers/JM.Recursos.js';
+import { getAll, post, getByName, deleteRecurso, updateRecurso} from '../controllers/JM.Recursos.js';
 
 
 
@@ -29,7 +29,7 @@ router.post('/create', isAdmin ,post);
 router.delete('/delete/:id', isAdmin, deleteRecurso);
 
 // Ruta para actualizar un recurso existente
-router.put('/update/:id', isAdmin, put);
+router.put('/update/:id', isAdmin, updateRecurso);
 
 // Exportación del router para ser utilizado por Express en otros módulos
 export default router;

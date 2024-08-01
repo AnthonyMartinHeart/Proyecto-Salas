@@ -7,6 +7,12 @@ import Error404 from './pages/Error404';
 import EditUser from './pages/EditUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import Users from './pages/Users';
+import CrearReserva from './pages/CrearReserva';
+import ObtenerReserva from './pages/ObtenerReserva';
+import EditReserva from './pages/EditReserva';
+import CrearRecurso from './pages/CrearRecurso';
+import ObtenerRecurso from './pages/ObtenerRecurso';
+import EditRecurso from './pages/EditRecurso';
 
 const AppRouter = () => {
   return (
@@ -23,6 +29,9 @@ const AppRouter = () => {
           </ProtectedRoute>
         } 
       />
+
+
+
       <Route 
         path="/users" 
         element={
@@ -31,6 +40,61 @@ const AppRouter = () => {
           </ProtectedRoute>
         } 
       />
+
+        <Route 
+        path="/obtenerreservas" 
+        element={
+          
+            <ObtenerReserva />
+          
+        } 
+      />
+
+      <Route 
+        path="/crearreservas" 
+        element={
+          
+            <CrearReserva />
+          
+        } 
+      />
+            <Route 
+        path="/edit-reserva/:id" 
+        element={
+          
+            <EditReserva  />
+          
+        } 
+      />
+      
+      <Route 
+        path="/obtenerrecursos" 
+        element={
+          
+            <ObtenerRecurso  />
+          
+        } 
+      />
+      
+      <Route 
+        path="/crearrecursos" 
+        element={
+          
+            <CrearRecurso />
+          
+        } 
+      />
+
+      <Route 
+        path="/edit-recurso/:id" 
+        element={
+          
+            <EditRecurso />
+          
+        } 
+      />
+      
+      
       <Route 
         path="/profile" 
         element={

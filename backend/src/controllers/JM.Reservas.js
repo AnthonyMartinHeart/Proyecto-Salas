@@ -139,34 +139,24 @@ export const post = async (req, res) => {
 // Controlador para eliminar una reserva por ID
 
 export const deleteReserva = async (req, res) => {
-
     try {
-
-        const { _id } = req.body; // Asegúrate de que estás recibiendo _id en el cuerpo de la solicitud
+        const { id } = req.params; // Obtener el ID de los parámetros de la URL
 
         // Buscamos y eliminamos la reserva por su ID
-
-        const data = await Reserva.findByIdAndDelete(_id);
+        const data = await Reserva.findByIdAndDelete(id);
 
         // Verificamos si se encontró y eliminó la reserva
-
         if (!data) {
-
             // Si no se encontró la reserva, enviamos un estado 404 con un mensaje
-
             return res.status(404).send({ message: 'Reserva no encontrada' });
         }
 
         // Enviamos una respuesta de éxito si se eliminó correctamente
-
         res.status(200).send({ message: '¡Reserva eliminada con éxito!' });
 
     } catch (error) {
-
         // En caso de error, enviamos un estado 500 con un mensaje y el error
-
         console.error('Error al eliminar reserva:', error);
-
         res.status(500).send({ message: 'No se pudo eliminar la reserva', error: error.message });
     }
 };

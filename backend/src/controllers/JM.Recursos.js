@@ -127,42 +127,35 @@ export const deleteRecurso = async (req, res) => {
 
 // Controlador para actualizar un recurso
 
-export const put = async (req, res) => {
+export const updateRecurso = async (req, res) => {
     try {
-        const { _id, patrimonio, nombre, marca, modelo, cantidad, desc } = req.body;
+        const { id } = req.params; // Obtener el _id de la URL
+        const updateData = req.body; // Obtener los datos actualizados del cuerpo de la solicitud
 
-        // Actualizamos el recurso con los nuevos datos y devolvemos el documento actualizado
-
-        const data = await Recurso.findByIdAndUpdate(
-            _id,
-            { patrimonio, nombre, marca, modelo, cantidad, desc },
-
-            { new: true }
-        );
-
-                // Verificar si la cantidad supera el límite permitido
-                if (cantidad >= 40) {
-                    return res.status(400).send({ message: 'Limite De cantidad Alcanzado' });
-                }
-
-        // Verificar si se encontró y actualizó el recurso
-
-        if (!data) {
-
-            // Si no se encontró el recurso, enviamos un estado 404 con un mensaje
-
-            res.status(404).send({ message: 'Recurso no encontrado' });
-
-            return;
+        // Verificar si el ID y los datos de actualización están presentes
+        if (!id || !updateData) {
+            return res.status(400).send({ message: 'Se requiere ID del recurso y datos para actualizar' });
         }
 
-        // Enviamos una respuesta de éxito con un mensaje
+        // Verificar si la cantidad es un número positivo
+        if (updateData.cantidad && (updateData.cantidad <= 0 || isNaN(updateData.cantidad))) {
+            return res.status(400).send({ message: 'La cantidad debe ser un número positivo' });
+        }
 
-        res.status(200).send({ message: 'Actualizado Exitosamente' });
+        // Actualizar el recurso con los nuevos datos y devolver el documento actualizado
+        const updatedRecurso = await Recurso.findByIdAndUpdate(id, updateData, { new: true });
 
-    } catch (e) {
-        // En caso de error, enviamos un estado 400 con un mensaje y el error
+        // Verificar si se encontró y actualizó el recurso
+        if (!updatedRecurso) {
+            return res.status(404).send({ message: 'Recurso no encontrado' });
+        }
 
-        res.status(400).send({ message: 'Fallo al Actualizar', data: e });
+        // Enviar una respuesta de éxito con un mensaje y los datos actualizados
+        res.status(200).send({ message: '¡Recurso actualizado con éxito!', recurso: updatedRecurso });
+
+    } catch (error) {
+        // En caso de error, enviar un estado 400 con un mensaje y el error
+        console.error('Error al actualizar recurso:', error);
+        res.status(400).send({ message: 'No se pudo actualizar el recurso', error });
     }
 };

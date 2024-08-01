@@ -1,13 +1,25 @@
+import  { useState, useEffect } from 'react';
+
 const Form = ({ title, fields, buttonText, onSubmit, footerContent, backgroundColor }) => {
+    const [formData, setFormData] = useState({});
+
+    useEffect(() => {
+        // Inicializa el estado del formulario con los valores de los campos
+        const initialData = fields.reduce((acc, field) => ({
+            ...acc,
+            [field.name]: field.value || ''
+        }), {});
+        setFormData(initialData);
+    }, [fields]);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevData => ({ ...prevData, [name]: value }));
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-        onSubmit(data);
+        onSubmit(formData);
     };
 
     return (
@@ -17,11 +29,12 @@ const Form = ({ title, fields, buttonText, onSubmit, footerContent, backgroundCo
                 <div className="container_inputs" key={index}>
                     {field.label && <label htmlFor={field.name}>{field.label}</label>}
                     <input
-                        label={field.type || "text"}
+                        id={field.name}
                         name={field.name}
                         placeholder={field.placeholder}
                         type={field.type || "text"}
-                        value={field.value}
+                        value={formData[field.name] || ''}
+                        onChange={handleChange}
                         required={field.required}
                         disabled={field.disabled}
                     />
@@ -32,6 +45,5 @@ const Form = ({ title, fields, buttonText, onSubmit, footerContent, backgroundCo
         </form>
     );
 };
-
 
 export default Form;
