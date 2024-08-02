@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { useState } from 'react'; // Importa el hook useState de React para manejar el estado del componente
+import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate de react-router-dom para la navegación
+import Navbar from '../components/Navbar'; // Importa el componente de barra de navegación
 import { createRecurso } from '../services/recurso.service'; // Asegúrate de que la ruta sea correcta
 import '../styles/CrearRecurso.css'; // Asegúrate de tener estilos para este componente
 
 const CrearRecurso = () => {
+    // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     patrimonio: '',
     nombre: '',
@@ -13,10 +14,15 @@ const CrearRecurso = () => {
     cantidad: '',
     desc: ''
   });
+
+  // Estado para manejar mensajes de error
   const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState(''); // Estado para el mensaje de éxito
+  // Estado para manejar mensajes de éxito
+  const [successMessage, setSuccessMessage] = useState(''); 
+  // Hook de navegación
   const navigate = useNavigate();
 
+  // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,10 +31,13 @@ const CrearRecurso = () => {
     });
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Previene el comportamiento por defecto del formulario
     try {
+      // Llama al servicio para crear el recurso
       await createRecurso(formData);
+    
       setSuccessMessage('Recurso creado exitosamente.'); // Mensaje de éxito
       setError(''); // Limpiar mensaje de error
 
