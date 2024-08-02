@@ -44,11 +44,11 @@ const ObtenerRecurso = () => {
   return (
     <>
       <Navbar />
-      <div className='main-container'>
-        {error && <div className='error-message'>{error}</div>}
+      <div className='error-message'>{error}</div>
+      <h1 className='form-title'>Mis Recursos</h1>
+      <div className='table-container'>
         <table className='recurso-table'>
           <thead>
-            <h1 className='form-title'>Obtener Recursos</h1>
             <tr>
               <th>Nombre</th>
               <th>Marca</th>

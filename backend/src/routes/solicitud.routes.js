@@ -20,19 +20,19 @@ const router = Router();
 
 // Ruta para crear una nueva solicitud, requiere que el usuario esté autenticado
 
-router.post("/create", isAdmin, createSolicitud);
+router.post("/create",  createSolicitud);
 
 // Ruta para obtener las solicitudes del usuario autenticado
 
-router.get("/get", isAdmin, getSolicitudes);
+router.get("/get",  getSolicitudes);
 
 // Ruta para actualizar una solicitud existente, requiere que el usuario esté autenticado
 
-router.put("/update/:id", isAdmin, updateSolicitud); 
+router.put("/update/:id",  updateSolicitud); 
 
 // Ruta para eliminar una solicitud existente, requiere que el usuario esté autenticado
 
-router.delete("/delete/:id", isAdmin, deleteSolicitud);
+router.delete("/delete/:id", isAdmin,  deleteSolicitud);
 
 // Exportar el enrutador para su uso en otras partes de la aplicación
 

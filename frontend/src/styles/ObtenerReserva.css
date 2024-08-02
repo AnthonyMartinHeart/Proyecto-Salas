@@ -1,80 +1,89 @@
-.main-container {
-  padding: 20px;
-  max-width: 1000px; /* Ajusta el ancho máximo según tu preferencia */
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Estilos para la página de obtener recursos */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* Títulos */
 .form-title {
+  font-size: 28px;
+  margin: 100px auto 20px auto; /* Aumenta aún más el margen superior para bajar el título */
+  color: #2c3e50;
   text-align: center;
-  font-size: 2.5rem; /* Ajusta el tamaño según tu preferencia */
-  color: #4A90E2; /* Ajusta el color según tu preferencia */
-  margin: 20px 0; /* Ajusta el margen superior e inferior */
-  font-weight: bold;
-  padding: 0; /* Elimina el padding si no es necesario */
-  max-width: 1000px; /* Ajusta el máximo ancho del título para que coincida con el contenedor principal */
-  margin-left: auto; /* Centra horizontalmente */
-  margin-right: auto; /* Centra horizontalmente */
+  font-weight: 600;
 }
 
+/* Mensajes de error */
 .error-message {
-  color: red;
+  color: #fff;
+  padding: 15px;
+  margin: 20px auto;
+  border-radius: 8px;
   text-align: center;
-  margin-bottom: 15px;
+  font-weight: 500;
+  background-color: #e74c3c; /* Rojo para errores */
 }
 
-.reserva-table {
+/* Contenedor de la tabla */
+.table-container {
+  width: 80%; /* Ajusta el ancho del contenedor */
+  max-width: 1000px; /* Ancho máximo ajustado */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  overflow-x: auto; /* Permite el desplazamiento horizontal en pantallas pequeñas */
+}
+
+/* Estilos para la tabla */
+.recurso-table {
   width: 100%;
   border-collapse: collapse;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 }
 
-.reserva-table th, .reserva-table td {
-  padding: 15px; /* Aumenta el padding para celdas más grandes */
-  border: 1px solid #ddd;
+.recurso-table thead {
+  background-color: #3498db; /* Color de fondo para el encabezado */
+  color: #fff;
+}
+
+.recurso-table th,
+.recurso-table td {
+  padding: 12px; /* Padding reducido para las celdas */
   text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.reserva-table th {
-  background-color: #4A90E2;
-  color: white;
-  font-size: 1.1rem; /* Aumenta el tamaño de fuente en el encabezado */
+.recurso-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
-.reserva-table td {
-  font-size: 1rem; /* Aumenta el tamaño de fuente en las celdas */
+.recurso-table tbody tr:hover {
+  background-color: #f1f1f1;
 }
 
-.reserva-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
+/* Botones de acción */
 .action-button {
-  background: #fff; /* Fondo blanco para los botones */
-  border: 1px solid #ddd; /* Borde gris claro */
-  border-radius: 4px; /* Bordes redondeados */
-  padding: 8px 12px; /* Espaciado interno del botón */
-  cursor: pointer;
-  display: flex;
+  background-color: #2980b9; /* Color de fondo para botones */
+  border: none;
+  color: white;
+  padding: 10px 16px; /* Padding ajustado para compactar los botones */
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
   align-items: center;
-  gap: 8px; /* Espacio entre el ícono y el texto */
-  font-size: 0.9rem; /* Tamaño de fuente del texto */
-  color: #333; /* Color del texto */
-  transition: background-color 0.3s, color 0.3s; /* Transición para el color de fondo y el texto */
+  font-size: 14px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .action-button:hover {
-  background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón */
-  color: #000; /* Color del texto al pasar el ratón */
+  background-color: #1f5a8d; /* Color de fondo al pasar el ratón sobre el botón */
+  transform: scale(1.05);
 }
 
 .icon {
-  width: 20px; /* Ajusta el tamaño del ícono según sea necesario */
-  height: 20px; /* Ajusta el tamaño del ícono según sea necesario */
-}
-
-.icon:hover {
-  opacity: 0.8; /* Efecto de opacidad al pasar el ratón sobre el ícono */
+  margin-right: 8px;
+  vertical-align: middle;
 }

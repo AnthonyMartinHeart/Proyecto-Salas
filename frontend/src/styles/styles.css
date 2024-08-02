@@ -373,12 +373,15 @@ body {
   }
 
   .form-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: calc(100vh - 80px); /* Ajusta según el tamaño de tu navbar */
-  }
-  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Ajusta según el tamaño de tu navbar */
+    padding-top: 80px; /* Asegúrate de que haya suficiente espacio para la navbar fija */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho total */
+}
+
   .form-wrapper {
 	background-color: white;
 	padding: 20px;
@@ -387,3 +390,5 @@ body {
 	width: 100%;
 	max-width: 500px;
   }
+
+  

@@ -44,11 +44,12 @@ const ObtenerReserva = () => {
   return (
     <>
       <Navbar />
-      <div className='main-container'>
-        {error && <div className='error-message'>{error}</div>}
-        <table className='reserva-table'>
+      {error && <div className='error-message'>{error}</div>}
+     
+      <div className='table-container'>
+      <h1 className='form-title'>Mis Reservas</h1>
+        <table className='solicitud-table'>
           <thead>
-            <h1 className='form-title'>Obtener Reservas</h1>
             <tr>
               <th>Nombre</th>
               <th>Tipo</th>
@@ -60,7 +61,7 @@ const ObtenerReserva = () => {
               <th>Nombre Profesor</th>
               <th>Cantidad</th>
               <th>Patrimonio</th>
-              <th>Acción</th> {/* Columna para las acciones */}
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>

@@ -1,0 +1,74 @@
+/* Estilo del wrapper del formulario */
+.form-wrapper {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+/* Estilo de la tabla del formulario */
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form-table td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+.form-table label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-table input,
+.form-table select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+/* Estilo de los botones de acción (editar y eliminar) */
+.time-range-button {
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+/* Estilo para el botón de editar */
+.edit-button {
+    background-color: #4CAF50; /* Verde */
+}
+
+/* Estilo para el botón de eliminar */
+.remove-button {
+    background-color: #f44336; /* Rojo */
+}
+
+/* Estilo del botón de acción en hover */
+.time-range-button:hover {
+    opacity: 0.9;
+}
+
+/* Estilo para la lista de rangos de tiempo */
+.time-range-list {
+    list-style: none;
+    padding: 0;
+}
+
+.time-range-list li {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}

@@ -21,10 +21,6 @@ import JMRecursosRoutes from './JM.Routes.Recursos.js';
 
 import JMReservas from "./JM.Routes.Reservas.js";
 
-/**  Enrutador De Usuarios **/
-
-import JMUsuario from "./JM.Routes.Usuario.js";
-
 
 /** Enrutador Jorge diaz **/
 import solicitudRoutes from "./solicitud.routes.js";
@@ -34,7 +30,7 @@ import solicitudRoutes from "./solicitud.routes.js";
 import BMEquipos from "./BM.Routes.Equipos.js";
 
 /** Enrutador Patricio **/
-import ResourceUsage from "./resourceUsage.Routes.js";
+import reporteRoutes from "./reporte.Routes.js";
 
 
 /** Enrutador Alejandro **/
@@ -61,16 +57,13 @@ router.use("/Reservas", JMReservas);
 router.use('/Recursos', JMRecursosRoutes);
 
 
-router.use("/Usuario", JMUsuario);
-
-
 router.use("/solicitud", solicitudRoutes);
 
 
 router.use("/Equipos", BMEquipos);
 
 // Define las rutas para los recursos (/api/resources)
-router.use("/Resources", ResourceUsage);
+router.use("/Reportes", reporteRoutes);
 
 router.use("/Registros",registroPrestamo);
 

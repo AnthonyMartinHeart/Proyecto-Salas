@@ -13,6 +13,12 @@ import EditReserva from './pages/EditReserva';
 import CrearRecurso from './pages/CrearRecurso';
 import ObtenerRecurso from './pages/ObtenerRecurso';
 import EditRecurso from './pages/EditRecurso';
+import CrearSolicitud from './pages/CrearSolicitud';
+import ObtenerSolicitud from './pages/ObtenerSolicitud';
+import EditSolicitud from './pages/EditSolicitud';
+import CrearReporte from './pages/CrearReporte';
+import ObtenerReporte from './pages/ObtenerReporte';
+import EditReporte from './pages/EditReporte';
 
 const AppRouter = () => {
   return (
@@ -90,6 +96,60 @@ const AppRouter = () => {
         element={
           
             <EditRecurso />
+          
+        } 
+      />
+
+<Route 
+        path="/crearsolicitud" 
+        element={
+          
+            <CrearSolicitud />
+          
+        } 
+      />
+      
+      <Route 
+        path="/obtenersolicitudes" 
+        element={
+          
+            <ObtenerSolicitud />
+          
+        } 
+      />
+
+      <Route 
+        path="edit-solicitud/:id" 
+        element={
+          
+            <EditSolicitud />
+          
+        } 
+      />
+
+<Route 
+        path="/crearreportes" 
+        element={
+          
+            <CrearReporte />
+          
+        } 
+      />
+      
+      <Route 
+        path="/obtenerreportes" 
+        element={
+          
+            <ObtenerReporte />
+          
+        } 
+      />
+
+      <Route 
+        path="edit-reporte/:id" 
+        element={
+          
+            <EditReporte />
           
         } 
       />

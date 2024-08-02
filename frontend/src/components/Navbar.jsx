@@ -11,6 +11,8 @@ const Navbar = () => {
 
     const [isReservasOpen, setIsReservasOpen] = useState(false);
     const [isRecursosOpen, setIsRecursosOpen] = useState(false);
+    const [isSolicitudesOpen, setIsSolicitudesOpen] = useState(false);
+    const [isReportesOpen, setIsReportesOpen] = useState(false);
 
     const logoutSubmit = async () => {
         try {
@@ -25,22 +27,42 @@ const Navbar = () => {
     const toggleReservasSubMenu = () => {
         setIsReservasOpen(true);
         setIsRecursosOpen(false);
+        setIsSolicitudesOpen(false);
+        setIsReportesOpen(false);
     };
 
     const toggleRecursosSubMenu = () => {
         setIsRecursosOpen(true);
         setIsReservasOpen(false);
+        setIsSolicitudesOpen(false);
+        setIsReportesOpen(false);
+    };
+
+    const toggleSolicitudesSubMenu = () => {
+        setIsSolicitudesOpen(true);
+        setIsReservasOpen(false);
+        setIsRecursosOpen(false);
+        setIsReportesOpen(false);
+    };
+
+    const toggleReportesSubMenu = () => {
+        setIsReportesOpen(true);
+        setIsReservasOpen(false);
+        setIsRecursosOpen(false);
+        setIsSolicitudesOpen(false);
     };
 
     const resetMenu = () => {
         setIsReservasOpen(false);
         setIsRecursosOpen(false);
+        setIsSolicitudesOpen(false);
+        setIsReportesOpen(false);
     };
 
     return (
         <nav className="navbar">
             <ul>
-                {(!isReservasOpen && !isRecursosOpen) ? (
+                {(!isReservasOpen && !isRecursosOpen && !isSolicitudesOpen && !isReportesOpen) ? (
                     <>
                         <li>
                             <img src="/2997606.png" alt="Logo metodología de desarrollo" />
@@ -56,6 +78,16 @@ const Navbar = () => {
                         <li className={location.pathname.startsWith("/recursos") ? "active" : ""}>
                             <span onClick={toggleRecursosSubMenu} style={{ color: "white" }}>
                                 Recursos
+                            </span>
+                        </li>
+                        <li className={location.pathname.startsWith("/solicitudes") ? "active" : ""}>
+                            <span onClick={toggleSolicitudesSubMenu} style={{ color: "white" }}>
+                                Solicitudes
+                            </span>
+                        </li>
+                        <li className={location.pathname.startsWith("/reportes") ? "active" : ""}>
+                            <span onClick={toggleReportesSubMenu} style={{ color: "white" }}>
+                                Reportes
                             </span>
                         </li>
                         {userRole === 'administrador' && (
@@ -85,7 +117,7 @@ const Navbar = () => {
                             <NavLink to="/" onClick={logoutSubmit}>Cerrar</NavLink>
                         </li>
                     </>
-                ) : (
+                ) : isRecursosOpen ? (
                     <>
                         <li className={location.pathname === "/home" ? "active" : ""}>
                             <NavLink to="/home" onClick={resetMenu}>Inicio</NavLink>
@@ -95,6 +127,36 @@ const Navbar = () => {
                         </li>
                         <li className={location.pathname === "/crearrecursos" ? "active" : ""}>
                             <NavLink to="/crearrecursos">Crear Recurso</NavLink>
+                        </li>
+                        <li className={location.pathname === "/" ? "active" : ""}>
+                            <NavLink to="/" onClick={logoutSubmit}>Cerrar</NavLink>
+                        </li>
+                    </>
+                ) : isSolicitudesOpen ? (
+                    <>
+                        <li className={location.pathname === "/home" ? "active" : ""}>
+                            <NavLink to="/home" onClick={resetMenu}>Inicio</NavLink>
+                        </li>
+                        <li className={location.pathname === "/obtenersolicitudes" ? "active" : ""}>
+                            <NavLink to="/obtenersolicitudes">Ver Solicitudes</NavLink>
+                        </li>
+                        <li className={location.pathname === "/crearsolicitud" ? "active" : ""}>
+                            <NavLink to="/crearsolicitud">Crear Solicitud</NavLink>
+                        </li>
+                        <li className={location.pathname === "/" ? "active" : ""}>
+                            <NavLink to="/" onClick={logoutSubmit}>Cerrar</NavLink>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li className={location.pathname === "/home" ? "active" : ""}>
+                            <NavLink to="/home" onClick={resetMenu}>Inicio</NavLink>
+                        </li>
+                        <li className={location.pathname === "/obtenerreportes" ? "active" : ""}>
+                            <NavLink to="/obtenerreportes">Ver Reportes</NavLink>
+                        </li>
+                        <li className={location.pathname === "/crearreportes" ? "active" : ""}>
+                            <NavLink to="/crearreportes">Crear Reporte</NavLink>
                         </li>
                         <li className={location.pathname === "/" ? "active" : ""}>
                             <NavLink to="/" onClick={logoutSubmit}>Cerrar</NavLink>
