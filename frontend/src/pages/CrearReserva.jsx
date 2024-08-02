@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { useState } from 'react'; // Importa el hook useState de React para manejar el estado del componente
+import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate de react-router-dom para la navegación
+import Navbar from '../components/Navbar'; // Importa el componente de barra de navegación
 import { createReserva } from '../services/reserva.service'; // Asegúrate de que la ruta sea correcta
 import '../styles/CrearReserva.css'; // Asegúrate de tener estilos para este componente
 
