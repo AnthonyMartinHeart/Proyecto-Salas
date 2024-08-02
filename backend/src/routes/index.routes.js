@@ -21,10 +21,6 @@ import JMRecursosRoutes from './JM.Routes.Recursos.js';
 
 import JMReservas from "./JM.Routes.Reservas.js";
 
-/**  Enrutador De Usuarios **/
-
-import JMUsuario from "./JM.Routes.Usuario.js";
-
 
 /** Enrutador Jorge diaz **/
 import solicitudRoutes from "./solicitud.routes.js";
@@ -59,9 +55,6 @@ router.use("/Reservas", JMReservas);
 
 
 router.use('/Recursos', JMRecursosRoutes);
-
-
-router.use("/Usuario", JMUsuario);
 
 
 router.use("/solicitud", solicitudRoutes);
