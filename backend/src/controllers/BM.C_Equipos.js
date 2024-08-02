@@ -111,4 +111,27 @@ const listarEquipos = async (req, res) => {
   }
 };
 
-export {crearEquipo, actualizarEquipo, eliminarEquipo, listarEquipos };
+const listarUno = async (req, res) => {
+  try {
+    // Obtener el ID de los parámetros de la solicitud
+    const id = req.params.id;
+
+    // Buscar el equipo por ID en la base de datos
+    const equipo = await BMEquipo.findById(id);
+
+    // Verificar si se encontró el equipo
+    if (!equipo) {
+      return res.status(404).send({ message: 'Equipo no encontrado' });
+    }
+
+    // Enviar el equipo como respuesta
+    res.status(200).send(equipo);
+    console.log('Se ah encontrado el equipo');
+  } catch (error) {
+    // Manejar errores y enviar una respuesta de error
+    res.status(500).send(error);
+    console.log('Error interno del servidor');
+  }
+};
+
+export {crearEquipo, actualizarEquipo, eliminarEquipo, listarEquipos, listarUno };

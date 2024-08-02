@@ -24,6 +24,7 @@ const equipoSchema = new mongoose.Schema({
     cantidad:{
         type: Number,
         required: true,
+        min:[0,'La cantidad no puede ser negativa'],
         trim: true
     },
     condicionUso:{ // Especifica las condiciones para el uso del equipamiento

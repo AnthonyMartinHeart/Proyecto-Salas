@@ -13,6 +13,7 @@ const Navbar = () => {
     const [isRecursosOpen, setIsRecursosOpen] = useState(false);
     const [isSolicitudesOpen, setIsSolicitudesOpen] = useState(false);
     const [isReportesOpen, setIsReportesOpen] = useState(false);
+    const [isEquiposOpen, setIsEquiposOpen]= useState(false);
 
     const logoutSubmit = async () => {
         try {
@@ -29,6 +30,7 @@ const Navbar = () => {
         setIsRecursosOpen(false);
         setIsSolicitudesOpen(false);
         setIsReportesOpen(false);
+        setIsEquiposOpen(false);
     };
 
     const toggleRecursosSubMenu = () => {
@@ -36,6 +38,7 @@ const Navbar = () => {
         setIsReservasOpen(false);
         setIsSolicitudesOpen(false);
         setIsReportesOpen(false);
+        setIsEquiposOpen(false);
     };
 
     const toggleSolicitudesSubMenu = () => {
@@ -43,6 +46,7 @@ const Navbar = () => {
         setIsReservasOpen(false);
         setIsRecursosOpen(false);
         setIsReportesOpen(false);
+        setIsEquiposOpen(false);
     };
 
     const toggleReportesSubMenu = () => {
@@ -50,19 +54,30 @@ const Navbar = () => {
         setIsReservasOpen(false);
         setIsRecursosOpen(false);
         setIsSolicitudesOpen(false);
+        setIsEquiposOpen(false);
     };
+
+    const toggleEquiposSubMenu = () => {
+        setIsEquiposOpen(true);
+        setIsReservasOpen(false);
+        setIsRecursosOpen(false);
+        setIsSolicitudesOpen(false);
+        setIsReportesOpen(false);
+    }
 
     const resetMenu = () => {
         setIsReservasOpen(false);
         setIsRecursosOpen(false);
         setIsSolicitudesOpen(false);
         setIsReportesOpen(false);
+        setIsEquiposOpen(false);
     };
+    
 
     return (
         <nav className="navbar">
             <ul>
-                {(!isReservasOpen && !isRecursosOpen && !isSolicitudesOpen && !isReportesOpen) ? (
+                {(!isReservasOpen && !isRecursosOpen && !isSolicitudesOpen && !isReportesOpen && !isEquiposOpen) ? (
                     <>
                         <li>
                             <img src="/2997606.png" alt="Logo metodología de desarrollo" />
@@ -78,6 +93,11 @@ const Navbar = () => {
                         <li className={location.pathname.startsWith("/recursos") ? "active" : ""}>
                             <span onClick={toggleRecursosSubMenu} style={{ color: "white" }}>
                                 Recursos
+                            </span>
+                        </li>
+                        <li className={location.pathname.startsWith("/Equipo") ? "active" : ""}>
+                            <span onClick={toggleEquiposSubMenu} style={{color:"white"}}>
+                                Equipos
                             </span>
                         </li>
                         <li className={location.pathname.startsWith("/solicitudes") ? "active" : ""}>
@@ -131,6 +151,21 @@ const Navbar = () => {
                         <li className={location.pathname === "/" ? "active" : ""}>
                             <NavLink to="/" onClick={logoutSubmit}>Cerrar</NavLink>
                         </li>
+                    </>
+                ) : isEquiposOpen ? (
+                    <>
+                    <li className={location.pathname === "/home" ? "active" : ""}>
+                        <NavLink to="/home" onClick={resetMenu}>Inicio</NavLink>
+                    </li>
+                    <li className={location.pathname === "/Equipo/crear" ? "active" : ""}>
+                        <NavLink to="/Equipo/crear">Crear Equipo</NavLink>
+                    </li>
+                    <li className={location.pathname === "/Equipo/listar" ? "active" : ""}>
+                        <NavLink to="/Equipo/listar">Listar Equipo</NavLink>
+                    </li>
+                    <li className={location.pathname === "/" ? "active" : ""}>
+                        <NavLink to="/" onClick={logoutSubmit}>Cerrar</NavLink>
+                    </li>
                     </>
                 ) : isSolicitudesOpen ? (
                     <>
