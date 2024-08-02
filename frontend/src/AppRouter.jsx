@@ -19,6 +19,10 @@ import EditSolicitud from './pages/EditSolicitud';
 import CrearReporte from './pages/CrearReporte';
 import ObtenerReporte from './pages/ObtenerReporte';
 import EditReporte from './pages/EditReporte';
+import Listar from './pages/ListarEquipo';
+import Eliminar from './pages/EliminarEquipo';
+import Crear from './pages/CrearEquipo';
+import Actualizar from './pages/ActualizarEquipo';
 
 const AppRouter = () => {
   return (
@@ -100,7 +104,7 @@ const AppRouter = () => {
         } 
       />
 
-<Route 
+      <Route 
         path="/crearsolicitud" 
         element={
           
@@ -126,8 +130,13 @@ const AppRouter = () => {
           
         } 
       />
+      
+      <Route path = "/Equipo/listar" element={<Listar/>}/>
+      <Route path = "/Equipo/crear" element={<Crear/>}/>
+      <Route path = "/Equipo/actualizar/:id" element = {<Actualizar/>}/>
+      <Route path = "/Equipo/eliminar" element = {<Eliminar/>}/>
 
-<Route 
+      <Route 
         path="/crearreportes" 
         element={
           
