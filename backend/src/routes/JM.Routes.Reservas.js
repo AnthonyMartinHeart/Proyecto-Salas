@@ -5,6 +5,8 @@ import { Router } from 'express';
 
 import { isAdmin } from '../middlewares/auth.middleware.js';
 
+import { isUser } from '../middlewares/user.middleware.js';
+
 // Importación de funciones específicas desde el archivo JM.Reservas.js en la carpeta controllers
 
 import { get, getByName, getByNameSala, getById, post, deleteReserva, updatedReserva } from '../controllers/JM.Reservas.js';
@@ -16,7 +18,7 @@ const router = Router();
 // Definición de rutas y asociación con las funciones importadas
 
 // Ruta para obtener todas las reservas
-router.get('/get',isAdmin, get);
+router.get('/get', get);
 
 // Ruta para obtener una reserva por nombre
 router.get('/name',isAdmin, getByName);
@@ -28,12 +30,12 @@ router.get('/salas',isAdmin, getByNameSala);
 router.get('/id',isAdmin, getById);
 
 // Ruta para crear una nueva reserva
-router.post('/new',isAdmin, post);
+router.post('/new' , post);
 
 // Ruta para eliminar una reserva
 router.delete('/delete/:id',isAdmin, deleteReserva);
 
-
+//ruta para actualizar
 router.put('/update/:id', updatedReserva);
 
 // Exportación del router para ser utilizado por Express en otros módulos
