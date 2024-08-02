@@ -1,11 +1,12 @@
-import Form from "../components/Form.jsx";
-import Navbar from "../components/Navbar.jsx";
-import { updateReserva } from "../services/reserva.service.js";
-import { useLocation, useNavigate } from "react-router-dom";
+import Form from "../components/Form.jsx"; // Importa el componente de formulario
+import Navbar from "../components/Navbar.jsx"; // Importa el componente de barra de navegación
+import { updateReserva } from "../services/reserva.service.js"; // Importa la función para actualizar reservas
+import { useLocation, useNavigate } from "react-router-dom"; // Importa hooks de react-router-dom
 
 const EditReserva = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+  
+    const location = useLocation();   // Hook para obtener la ubicación actual (estado de navegación)
+    const navigate = useNavigate();  // Hook para navegar a otras rutas
 
     // Obtén los datos de reserva desde la ubicación
     const reserva = location.state?.reserva;
@@ -24,16 +25,17 @@ const EditReserva = () => {
         );
     }
 
+     // Función para manejar la actualización de la reserva
     const modReserva = (data) => {
         console.log("Datos enviados para actualizar la reserva:", data); // Log para los datos que se envían
 
-        updateReserva(reserva._id, data)
+        updateReserva(reserva._id, data) // Llama a la función de servicio para actualizar la reserva
             .then(response => {
                 console.log("Reserva actualizada exitosamente:", response); // Log para la respuesta del servidor
                 navigate('/obtenerreservas'); // Redirige a la página de reservas o donde desees
             })
             .catch(error => {
-                console.error("Error al actualizar la reserva:", error);
+                console.error("Error al actualizar la reserva:", error); // Log de error
             });
     };
 
@@ -43,14 +45,14 @@ const EditReserva = () => {
             <div className="form-container">
                 <div className="form-wrapper">
                     <Form
-                        title="Editar reserva"
+                        title="Editar reserva" // Título del formulario
                         fields={[
                             {
-                                label: "Nombre",
-                                name: "nombre",
-                                placeholder: reserva.nombre || "Nombre de la reserva",
-                                type: "text",
-                                value: reserva.nombre
+                                label: "Nombre", // Etiqueta del campo
+                                name: "nombre", // Nombre del campo (clave del objeto de datos)
+                                placeholder: reserva.nombre || "Nombre de la reserva", // Placeholder del campo
+                                type: "text", // Tipo de input
+                                value: reserva.nombre // Valor inicial del campo
                             },
                             {
                                 label: "Tipo",
@@ -116,8 +118,8 @@ const EditReserva = () => {
                                 value: reserva.patrimonio
                             },
                         ]}
-                        buttonText="Guardar cambios"
-                        onSubmit={modReserva}
+                        buttonText="Guardar cambios" // Texto del botón de envío
+                        onSubmit={modReserva} // Función a ejecutar en el envío del formulario
                     />
                 </div>
             </div>
